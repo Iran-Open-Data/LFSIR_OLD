@@ -1,0 +1,1582 @@
+
+yearly_table_availability:
+  household_information:      {data: 1384}
+
+default_table_settings:
+  # Options: error, drop
+  missings: drop
+
+
+data:
+  file_code:
+    1384: LFS_RawData
+    1396: LFS_RawData1396
+    1397: LFS_RawData1397
+    1398: LFS_RawData
+
+
+  columns:
+    PKEY:
+      new_name: ID  # HBSIR
+      type: UInt64
+    
+    NOBATAMARGIRI:
+      new_name: Census_Turn
+      type: UInt8
+
+    F2KOL_DJAYGOZIN:
+      new_name: Alternative_Household  # HBSIR
+      type: boolean
+      true_condition: 1
+
+    F2KOL_D20:
+      new_name: Survey_Taken 
+      type: boolean
+      true_condition: 1
+
+    F2KOL_D21:
+      new_name: Survey_Skip_Reason
+      type: category
+      categories:
+        1: Uncooperative
+        2: Absent
+        3: Incapable
+        4: Uninhabitable
+        5: Vacant
+        6: Not_Residence
+        7: Not_Found
+        8: Other_Reasons
+
+    F2_D01:
+      new_name: Member_Number  # HBSIR
+      type: UInt8
+
+    F2_D03:
+      new_name: Relationship  # HBSIR
+      type: category
+      categories:
+        1384:
+          1: Head
+          2: Spouse
+          3: Child
+          4: Child-in-Law
+          5: Grand-Child
+          6: Parent
+          7: Sibling
+          8: Other_Family
+          9: Non-Family
+        1387:
+          "1": Head
+          "2": Spouse
+          "3": Child
+          "4": Child-in-Law
+          "5": Grand-Child
+          "6": Parent
+          "7": Sibling
+          "8": Spouse_Parent
+          "9": Spouse_Sibling
+          "R": Other_Family
+          "B": Non-Family
+
+    F2_D04:
+      new_name: Sex  # HBSIR
+      type: category
+      categories:
+        1: Male
+        2: Female
+
+    F2_D05:
+      new_name: Birth_Month
+      type: UInt8
+      replace:
+        "QQ": null
+        "qq": null
+        "99": null
+
+    F2_D06:
+      new_name: Birth_Year
+      type: UInt16
+
+    F2_D07:
+      new_name: Age  # HBSIR
+      type: UInt8
+    
+    F2_D08:
+      new_name: Nationality  # HBSIR
+      type: category
+      categories:
+        1: Iranian
+        2: Afghan
+        3: Others
+
+    F2_D09:
+      new_name: Residence_Status
+      type: category
+      categories:
+        1: Present
+        2: Temporary_Absent
+        3: Abroad
+        4: Others
+
+    F2_D10:
+      new_name: Residence_Duration
+      type: category
+      categories:
+        1: Less_than_One_Year
+        2: One_Year_and_More
+
+    F2_D11:
+      new_name: Previous_Residence_Location
+      type: category
+      categories:
+        1: Same_City_Other_Place
+        2: Same_Province_Other_City
+        3: Same_Province_Other_Village
+        4: Other_Province_Other_City
+        5: Other_Province_Other_Village
+        6: Abroad
+
+    F2_D12:
+      new_name: Residence_Change_Reason
+      type: category
+      categories:
+        1384:
+          1: Job_Transfer
+          2: Marrage
+          3: Education
+          4: Job_Seeking
+          5: Seeking_Better_Job
+          6: Following_Household
+          7: Natural_Disaster
+          8: Other
+        1387:
+          1: Job_Seeking
+          2: Seeking_Better_Job
+          3: Job_Transfer
+          4: Education
+          5: Ending_Education
+          6: Military_Service
+          7: Ending_Military_Service
+          8: Following_Household
+          9: Other
+
+    F2_D13:
+      new_name: Previous_Residence_Province
+      type: category
+      categories:
+        0:  "Markazi"                           # مرکزی
+        1:  "Gilan"                             # گیلان
+        2:  "Mazandaran"                        # مازندران
+        3:  "East_Azerbaijan"                   # آذربایجان شرقی
+        4:  "West_Azerbaijan"                   # آذربایجان غربی
+        5:  "Kermanshah"                        # کرمانشاه
+        6:  "Khuzestan"                         # خوزستان
+        7:  "Fars"                              # فارس
+        8:  "Kerman"                            # کرمان
+        9:  "Razavi_Khorasan"                   # خراسان رضوی
+        10: "Isfahan"                           # اصفهان
+        11: "Sistan_and_Baluchestan"            # سیستان و بلوچستان
+        12: "Kurdistan"                         # کردستان
+        13: "Hamadan"                           # همدان
+        14: "Chaharmahal_and_Bakhtiari"         # چهارمحال و بختیاری
+        15: "Lorestan"                          # لرستان
+        16: "Ilam"                              # ایلام
+        17: "Kohgiluyeh_and_Boyer-Ahmad"        # کهکیلویه و بویر احمد
+        18: "Bushehr"                           # بوشهر
+        19: "Zanjan"                            # زنجان
+        20: "Semnan"                            # سمنان
+        21: "Yazd"                              # یزد
+        22: "Hormozgan"                         # هرمزگان
+        23: "Tehran"                            # تهران
+        24: "Ardabil"                           # اردبیل
+        25: "Qom"                               # قم
+        26: "Qazvin"                            # قزوین
+        27: "Golestan"                          # گلستان
+        28: "North_Khorasan"                    # خراسان شمالی
+        29: "South_Khorasan"                    # خراسان جنوبی
+        30: "Alborz"                            # البرز
+
+    F2_D14:
+      new_name: Previous_Residence_Country
+      type: category
+      categories:
+        1: North_America
+        2: Europe
+        3: Persian_Gulf_Countries
+        4: Caspian_Sea_Countries
+        5: Japan
+        6: Other_Countries
+
+    F2_D15:
+      new_name: Is_Student  # HBSIR
+      type: boolean
+      true_condition: 1
+
+    F2_D16:
+      new_name: Is_Literate  # HBSIR
+      type: boolean
+      true_condition: 1
+
+    F2_D17:
+      new_name: Education_Level  # HBSIR
+      type: string
+
+    F2_D18:
+      new_name: Field_of_Education
+      type: string
+
+    F2_D19:
+      new_name: Marrital_State  # HBSIR
+      type: category
+      categories:
+        1: Married
+        2: Widowed
+        3: Divorced
+        4: Bachelor
+
+    versions:
+      1384:
+        F3_D01: &F3_D01_1384
+          new_name: Worked_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته، حداقل یک ساعت به منظور دریافت مزد و حقوق،
+            کسب سود یا درآمد، برای خود یا خانوار خود کاری انجام داده‌اید؟
+          translation: >
+            In the past week, did you work at least one hour to earn wages,
+            salary, profit or income (cash or in-kind)?
+          type: boolean
+          true_condition: 1
+
+        F3_D02:
+          new_name: Worked_Nonconventional_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته، حداقل یک ساعت به منظور کسب درآمد نقدی یا
+            غیر نقدی، برای خود یا خانوار خود، فعالیت‌هایی نظیر :
+            کشاورزی شامل : زراعت، باغداری، دامداری، ماهیگیری و ...
+            کار تولیدی یا خدماتی در منزل مثل قالی‌بافی، خیاطی، آرایشگری، تایپ،
+            تدریس خصوصی، تعمیر وسایل برقی و ...
+            انجام خدمت وظیفه
+            کارآموزی در یک موسسه
+            تحصیل به عنوان بورسیه یک سازمان
+            انجام داده‌اید؟
+          translation: >
+            In the past week, did you work for at least one hour to earn income 
+            through activities such as: 
+            Agriculture including farming, gardening, livestock, fishing, etc.
+            Manufacturing or services at home like rug weaving, sewing, 
+            hairdressing, typing, private tutoring, appliance repair, etc.
+            Performing military or civil service
+            Interning at an institution
+            Studying under scholarship from an organization?
+          type: boolean
+          true_condition: 1
+
+        F3_D03: &F3_D03_1384
+          new_name: Worked_Unpaid_Family_Business_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته، حداقل یک ساعت برای یکی از خویشاوندان عضو
+            خانوار خود، به منظور ایجاد درآمد برای خانوار، کاری انجام داده‌اید
+            که به ازای آن مزد و حقوق (حتی غیر نقدی) دریافت نکرده باشید؟ (مثل
+            کمک به سرپرست خانوار در فعالیت‌های کشاورزی یا مغازه‌داری و امثال آن)
+          translation: >
+            In the past week, did you work for at least one hour without pay in a 
+            business owned by one of your relatives in the household, in order to 
+            generate income for the household? (For example, helping the head of 
+            household with farming, shopkeeping, etc.)
+          type: boolean
+          true_condition: 1
+
+        F3_D04: &F3_D04_1384
+          new_name: Had_Job_But_Absent_Last_Week
+          question: >
+            آیا کاری داشته‌اید که به دلایلی موقتا طول هفته‌ی گذشته از آن غایب
+            بوده باشید به طوری که مطمئن باشید به آن کار باز می‌گردید؟
+          translation: >
+            Did you have a job that you were temporarily absent from last 
+            week for certain reasons, and you are sure you will return to?
+          type: boolean
+          true_condition: 1
+
+        F3_D05: &F3_D05_1384
+          new_name: Reason_For_Job_Absence_Last_Week
+          question: >
+            علت اصلی غیبت موقت شما از کار در طول هفته‌ی گذشته چه بوده است؟
+            فصلی بودن کار (برای افراد خود اشتغال در مشاغل کشاورزی نظیر زراعت،
+            باغداری، دامداری ماهیگیری و ...)
+            تعطیلی محل کار، تغییرات موقت سازمانی یا خرابی دستگاه‌ها و
+            ماشین آلات
+            نداشتن مشتری یا سفارش
+            تعلیق موقت از کار (با داشتن پیوند رسمی شغلی)
+            نوبتی بودن کار
+            بیماری یا آسیب دیدگی موقت
+            تعطیلات یا انواع مرخصی
+            تحصیل یا آموزش
+            مسائل شخصی و خانوادگی
+            شرایط جوی نامساعد
+            سایر (با ذکر علت)
+          translation: >
+            What was the main reason for your temporary absence from work 
+            last week?
+            Seasonal work (for self-employed in agriculture like farming, 
+            gardening, livestock, fishing, etc)
+            Workplace closed, temporary organizational changes or machine 
+            breakdowns
+            No customers or orders
+            Temporary layoff (while still officially employed)
+            Shift work
+            Temporary illness or injury
+            Holidays or leave
+            Education or training
+            Personal or family issues 
+            Adverse weather conditions
+            Other (specify reason)
+          type: category
+          categories:
+            1: Seasonal
+            2: Workplace_Closed
+            3: No_Customers
+            4: Temporary_Layoff
+            5: Shift_Work
+            6: Illness
+            7: Holidays_or_leave
+            8: Education_or_Training
+            9: Personal_Issues
+            10: Weather
+            11: Other
+          replace:
+            1384: {"0&": null, "12": null}
+
+        F3_D06: &F3_D06_1384
+          new_name: Had_Other_Job_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته کار دیگری هم داشته‌اید؟
+          translation: >
+            Did you have another job last week as well?
+          type: boolean
+          true_condition: 1
+
+        F3_D07: &F3_D07_1384
+          new_name: Main_Job_Workplace_ISIC_Code
+          question: >
+            ویژگی‌ها و فعالیت اصلی محل کار شغل اصلی
+            (کد ISIC محل کار شغل اصلی)
+          translation: >
+            Main characteristics and activity of the main job's workplace
+            (ISIC code of the main job's workplace)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D08: &F3_D08_1384
+          new_name: Main_Job_Title_ISCO_Code
+          question: >
+            عنوان و وظیفه‌ی اصلی در شغل اصلی
+            (کد ISCO عنوان شغل اصلی)
+          translation: >
+            Main job title and primary duties in the main job
+            (ISCO code for main job title)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D09: &F3_D09_1384
+          new_name: Main_Job_Employment_Status
+          question: >
+            وضع شغلی در شغل اصلی
+            کارفرما
+            کارکن مستقل
+            کارکن فامیلی بدون مزد
+            مزد و حقوق بگیر بخش خصوصی
+            مزد و حقوق بگیر بخش عمومی
+            مزد و حقوق بگیر بخش تعاونی
+            کارآموز با مزد
+            کارآموز بدون مزد
+          translation: >
+            Employment status in main job:
+            Employer
+            Self-employed worker
+            Unpaid family worker
+            Private sector employee 
+            Public sector employee
+            Cooperative sector employee
+            Paid apprentice
+            Unpaid apprentice
+          type: category
+          categories:
+            1384:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Paid_Apprentice
+              8: Unpaid_Apprentice
+            1387:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Public_Sector_Paid_Apprentice
+              8: Public_Sector_Unpaid_Apprentice
+              9: Private_Sector_Paid_Apprentice
+              10: Private_Sector_Unpaid_Apprentice
+
+        F3_D10: &F3_D10_1384
+          new_name: Main_Job_Workplace_Employee_Count
+          question: >
+            تعداد کارکنان محل کار
+            یک تا چهار نفر
+            پنج تا نه نفر
+            ده تا نوزده نفر
+            بیست تا چهل و نه نفر
+            پنجاه نفر و بیشتر
+          translation: >
+            Number of employees at the workplace:
+            1 to 4 people
+            5 to 9 people
+            10 to 19 people
+            20 to 49 people
+            50 people or more
+          type: category
+          categories: 
+            1: 1-4
+            2: 5-9
+            3: 10-19
+            4: 20-49
+            5: 50+
+
+        F3_D11: &F3_D11_1384
+          new_name: Main_Job_Has_Health_Insurance
+          question: >
+            آیا به واسطه‌ی این شغل، تحت پوشش حداقل یکی از بیمه‌های درمانی
+            قرار دارید؟
+          translation: >
+            Does this job provide you with health insurance coverage?
+          type: boolean
+          true_condition: 1
+
+        F3_D12SAL: &F3_D12SAL_1384
+          new_name: Main_Job_Duration_Years
+          question: >
+            چند سال و چند ماه است که در این شغل کار می‌کنید؟
+            سال
+          translation: >
+            How many years and months have you been working in this job?
+            Years
+          type: UInt8
+
+        F3_D12MAH: &F3_D12MAH_1384
+          new_name: Main_Job_Duration_Months
+          question: >
+            چند سال و چند ماه است که در این شغل کار می‌کنید؟
+            ماه
+          translation: > 
+            How many years and months have you been working in this job?
+            Months
+          type: UInt8
+
+        F3_D1_12SAL: &F3_D1_12SAL_1384
+          new_name: Total_Work_Experience_Years
+          question: >
+            در مجموع چند سال و چند ماه است که کار می‌کنید؟
+            سال
+          translation: >
+            In total, how many years and months have you been working?
+            Years
+          type: UInt8
+
+        F3_D1_12MAH: &F3_D1_12MAH_1384
+          new_name: Total_Work_Experience_Months
+          question: >
+            در مجموع چند سال و چند ماه است که کار می‌کنید؟
+            ماه
+          translation: >
+            In total, how many years and months have you been working?
+            Months
+          type: UInt8
+
+        F3_D13SHASLIR: &F3_D13SHASLIR_1384
+          new_name: Main_Job_Days_Per_Week
+          question: >
+            در این فصل، به طور معمول چند روز و چند ساعت در هفته کار می‌کنید؟
+            شغل اصلی، روز در هفته
+          translation: >
+            In this season, how many days and hours do you usually work per week?
+            Main job, days per week
+          type: UInt8
+
+        F3_D13SHASLIS: &F3_D13SHASLIS_1384
+          new_name: Main_Job_Hours_Per_Week
+          question: >
+            در این فصل، به طور معمول چند روز و چند ساعت در هفته کار می‌کنید؟
+            شغل اصلی، ساعت در هفته
+          translation: >
+            In this season, how many days and hours do you usually work per week?
+            Main job, hours per week
+          type: UInt16
+
+        F3_D13SHHAMEH: &F3_D13SHHAMEH_1384
+          new_name: All_Jobs_Days_Per_Week
+          question: >
+            در این فصل، به طور معمول چند روز و چند ساعت در هفته کار می‌کنید؟
+            همه‌ی مشاغل، روز در هفته
+          translation: >
+            In this season, how many days and hours do you usually work per week?
+            All jobs, days per week  
+          type: UInt8
+
+        F3_D13SHHAMES: &F3_D13SHHAMES_1384
+          new_name: All_Jobs_Hours_Per_Week
+          question: >
+            در این فصل، به طور معمول چند روز و چند ساعت در هفته کار می‌کنید؟
+            همه‌ی مشاغل، ساعت در هفته
+          translation: >
+            In this season, how many days and hours do you usually work per week?
+            All jobs, hours per week
+          type: UInt16
+
+        F3_D14: &F3_D14_1384
+          new_name: Reason_For_Usual_Work_Hours
+          question: >
+            به چه علت ساعات کار معمول شما در هفته، ... ساعت است؟
+            ۱- ماهیت کار (کار تمام وقت کمتر از ۴۴ ساعت)
+            ۲- تمایل نداشتن به کار بیشتر
+            ۳- مسائل شخصی یا خانوادگی
+            ۴- بیماری، ناتوانی، آسیب‌دیدگی
+            ۵- تحصیل یا آموزش
+            ۶- پیدا نکردن کار با ساعت بیشتر
+            ۷- رکود کاری یا قرار داشتن در فصل غیر کاری
+            ۸- فقدان مواد اولیه یا اعتبارات مورد نیاز
+            ۹- سایر
+          translation: >
+            Why are your usual weekly work hours ... hours?
+            1 - Nature of work (full-time job less than 44 hours)   
+            2 - Unwillingness to work more
+            3 - Personal or family issues
+            4 - Illness, disability, injury
+            5 - Education or training
+            6 - Unable to find work with more hours
+            7 - Recession or off-season
+            8 - Lack of raw materials or credits
+            9 - Other
+          type: category
+          categories:
+            1: Work_Nature 
+            2: Unwillingness
+            3: Personal_Issues
+            4: Illness
+            5: Education_or_Training
+            6: Unable_to_Find 
+            7: Recession_or_off-season
+            8: Lack_of_Resources
+            9: Other 
+
+        F3_D15SHANBEH: &F3_D15SHANBEH_1384
+          new_name: Last_Week_Work_Hours_Saturday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            شنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Saturday
+          type: UInt8
+
+        F3_D15YEKSHAN: &F3_D15YEKSHAN_1384
+          new_name: Last_Week_Work_Hours_Sunday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            یک‌شنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Sunday
+          type: UInt8
+
+        F3_D15DOSHANB: &F3_D15DOSHANB_1384
+          new_name: Last_Week_Work_Hours_Monday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            دوشنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Monday
+          type: UInt8
+
+        F3_D15SESHANB: &F3_D15SESHANB_1384
+          new_name: Last_Week_Work_Hours_Tuesday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            سه‌شنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Tuesday
+          type: UInt8
+
+        F3_D15CHARSHA: &F3_D15CHARSHA_1384
+          new_name: Last_Week_Work_Hours_Wednesday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            چهارشنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Wednesday
+          type: UInt8
+
+        F3_D15PANSHAN: &F3_D15PANSHAN_1384
+          new_name: Last_Week_Work_Hours_Thursday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            پنج‌شنبه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Thursday
+          type: UInt8
+
+        F3_D15JOMEH: &F3_D15JOMEH_1384
+          new_name: Last_Week_Work_Hours_Friday
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            جمعه
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Friday
+          type: UInt8
+
+        F3_D15JAM: &F3_D15JAM_1384
+          new_name: Last_Week_Work_Hours_Total
+          question: >
+            در طول هفته‌ی گذشته، در مجموع برای همه‌ی مشاغل خود چند ساعت کار
+            کرده‌اید؟ (شامل اضافه کاری ولی به استثنای تعطیلات و مرخصی‌ها)
+            جمع
+          translation: >
+            Last week, how many total hours did you work in all your jobs? 
+            (Including overtime but excluding holidays and leave)
+            Total
+          type: UInt8
+
+        F3_D1_16: &F3_D1_16_1384
+          new_name: Reason_For_Less_Work_Last_Week
+          question: >
+            به چه علت در هفته‌ی گذشته کمتر از حد معمول کار کرده‌اید؟
+            ۱- تعطیلات یا مرخصی
+            ۲- بیماری، ناتوانی، آسیب‌دیدگی
+            ۳- تحصیلی یا آموزشی
+            ۴- مسائل شخصی یا خانوادگی
+            ۵- پیدا نکردن کار با ساعت بیشتر
+            ۶- تعطیلی محل کار
+            ۷- آغاز یا خاتمه کار
+            ۸- رکود کاری
+            ۹- سایر
+          translation: >
+            Why did you work less than usual last week?
+            1 - Holidays or leave
+            2 - Illness, disability, injury
+            3 - Education or training 
+            4 - Personal or family issues
+            5 - Unable to find more work hours
+            6 - Workplace closed
+            7 - Starting or ending work
+            8 - Recession
+            9 - Other
+          type: category
+          categories:
+            1: Holidays_or_leave
+            2: Illness
+            3: Education_or_Training
+            4: Personal_Issues
+            5: Unable_to_Find_Hours 
+            6: Workplace_Closed
+            7: Starting_or_Ending_Work
+            8: Recession
+            9: Other
+
+        F3_D2_16: &F3_D2_16_1384
+          new_name: Reason_For_More_Work_Last_Week
+          question: >
+            به چه علت در هفته‌ی گذشته بیش از حد معمول کار کرده‌اید؟
+            ۱- اضافه کاری غیر معمول
+            ۲- سایر
+          translation: >
+            Why did you work more than usual last week?
+            1 - Unusual overtime
+            2 - Other
+          type: category
+          categories:
+            1: Overtime
+            2: Other
+
+        F3_D17: &F3_D17_1384
+          new_name: Wanted_To_Work_More_Hours_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته، تمایل داشتید چند ساعت کار خود را
+            افزایش دهید؟
+          translation: >
+            Last week, did you want to increase your work hours?
+          type: boolean
+          true_condition: 1
+
+        F3_D18: &F3_D18_1384
+          new_name: Able_To_Work_More_Hours_Last_Week
+          question: >
+            آیا این آمادگی و توانایی را داشتید که ساعات کار خود را
+            افزایش دهید؟
+          translation: >
+            Last week, were you able to work more hours?
+          type: boolean
+          true_condition: 1
+
+        F3_D19: &F3_D19_1384
+          new_name: Method_To_Increase_Work_Hours
+          question: >
+            از چه طریق می‌خواستید ساعات کار خود را افزایش دهید؟
+            ۱- اضافه کردن ساعت کار شغل فعلی
+            ۲- پیدا کردن شغل دیگر علاوه بر شغل فعلی
+            ۳- پیدا کردن شغل دیگر با ساعت کار بیشتر به جای شغل فعلی
+            ۴- ترکیبی از موارد فوق
+          translation: >
+            How did you want to increase your work hours?
+            1 - Adding hours to current job
+            2 - Finding additional job besides current job
+            3 - Finding new job with more hours instead of current job
+            4 - Combination of above
+          type: category
+          categories:
+            1: Add_Hours_to_Current
+            2: Additional_Job
+            3: New_Job_With_More_Hours
+            4: Combination
+
+        F3_D20: &F3_D20_1384
+          new_name: Looked_For_Other_Job_Last_Week
+          question: >
+            آیا در طول هفته‌ی گذشته، در جستجوی شغل دیگری بوده‌اید؟
+          translation: >
+            Last week, were you looking for another job?
+          type: boolean
+          true_condition: 1
+
+        F3_D21: &F3_D21_1384
+          new_name: Reason_For_Job_Search
+          question: >
+            به چه منظوری در جستجوی شغل دیگری بوده‌اید؟
+            ۱- افزایش درآمد
+            ۲- کاهش ساعت کار
+            ۳- احتمال از دست دادن شغل فعلی
+            ۴- استفاده بهینه از مهارت و تخصص
+            ۵- افزایش ساعت کار
+            ۶- سایر
+          translation: >
+            For what purpose were you looking for another job?
+            1 - Increase income
+            2 - Reduce work hours
+            3 - Possibility of losing current job
+            4 - Optimal use of skills
+            5 - Increase work hours
+            6 - Other
+          type: category  
+          categories:
+            1: Increase_Income
+            2: Reduce_Hours
+            3: Lose_Current_Job
+            4: Use_Skills
+            5: Increase_Hours
+            6: Other
+
+        F3_D1_21: &F3_D1_21_1384
+          new_name: Job_Search_Method
+          question: >
+            از چه طریقی در جستجوی شغل دیگری بوده‌اید؟
+            ۱- پیدا کردن شغل دیگر علاوه بر شغل فعلی
+            ۲- پیدا کردن شغل دیگر به جای شغل فعلی
+            ۳- هر دو
+          translation: >
+            How were you looking for another job?
+            1 - In addition to current job
+            2 - To replace current job
+            3 - Both
+          type: category
+          categories:
+            1: Additional_Job
+            2: Replacement_Job
+            3: Both
+
+        F3_D22ROZ: &F3_D22ROZ_1384
+          new_name: Desired_Work_Days_Per_Week_This_Season
+          question: >
+            در این فصل تمایل دارید در هر هفته چند روز و چند ساعت کار کنید؟
+            روز در هفته
+          translation: >
+            This season, how many days and hours per week would you like to work?
+            Days per week
+          type: UInt8
+
+        F3_D22SAAT: &F3_D22SAAT_1384
+          new_name: Desired_Work_Hours_Per_Week_This_Season
+          question: >
+            در این فصل تمایل دارید در هر هفته چند روز و چند ساعت کار کنید؟
+            ساعت در هفته
+          translation: >
+            This season, how many days and hours per week would you like to work?
+            Hours per week
+          type: UInt16
+
+        F3_D23: &F3_D23_1384
+          new_name: Second_Job_Workplace_ISIC_Code
+          question: >
+            ویژگی‌ها و فعالیت اصلی محل کار شغل دوم
+            (کد ISIC محل کار شغل دوم)
+          translation: >
+            Main characteristics and activity of the second job's workplace
+            (ISIC code of the second job's workplace)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D24: &F3_D24_1384
+          new_name: Second_Job_Title_ISCO_Code
+          question: >
+            عنوان و وظیفه‌ی اصلی در شغل دوم
+            (کد ISCO عنوان شغل دوم)
+          translation: >
+            Main job title and primary duties in the second job
+            (ISCO code for second job title)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D25: &F3_D25_1384
+          new_name: Second_Job_Employment_Status
+          question: >
+            وضع شغلی در شغل دوم
+            کارفرما
+            کارکن مستقل
+            کارکن فامیلی بدون مزد
+            مزد و حقوق بگیر بخش خصوصی
+            مزد و حقوق بگیر بخش عمومی
+            مزد و حقوق بگیر بخش تعاونی
+            کارآموز با مزد
+            کارآموز بدون مزد
+          translation: >
+            Employment status in second job:
+            Employer
+            Self-employed worker
+            Unpaid family worker
+            Private sector employee 
+            Public sector employee
+            Cooperative sector employee
+            Paid apprentice
+            Unpaid apprentice
+          type: category
+          categories:
+            1384:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Paid_Apprentice
+              8: Unpaid_Apprentice
+            1387:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Public_Sector_Paid_Apprentice
+              8: Public_Sector_Unpaid_Apprentice
+              9: Private_Sector_Paid_Apprentice
+              10: Private_Sector_Unpaid_Apprentice
+
+        F3_D26: &F3_D26_1384
+          new_name: Ever_Worked_Before
+          question: >
+            آیا قبلا هرگز کار کرده‌اید؟
+          translation: >
+            Have you ever worked before?
+          type: boolean
+          true_condition: 1
+
+        F3_D27SAL: &F3_D27SAL_1384
+          new_name: Time_Since_Last_Job_Years
+          question: >
+            از ترک آخرین کار شما چه مدت گذشته است؟
+            سال
+          translation: >
+            How long has it been since you left your last job?
+            Years
+          type: UInt8
+
+        F3_D27MAH: &F3_D27MAH_1384
+          new_name: Time_Since_Last_Job_Months
+          question: >
+            از ترک آخرین کار شما چه مدت گذشته است؟
+            ماه
+          translation: >
+            How long has it been since you left your last job?
+            Months
+          type: UInt8
+
+        F3_D28: &F3_D28_1384
+          new_name: Last_Job_Workplace_ISIC_Code
+          question: >
+            ویژگی‌ها و فعالیت اصلی محل کار آخرین شغل
+            (کد ISIC محل کار آخرین شغل)
+          translation: >
+            Main characteristics and activity of the last job's workplace
+            (ISIC code of the last job's workplace)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D29: &F3_D29_1384
+          new_name: Last_Job_Title_ISCO_Code
+          question: >
+            عنوان و وظیفه‌ی اصلی در آخرین شغل
+            (کد ISCO عنوان شغل دوم)
+          translation: >
+            Main job title and primary duties in the last job
+            (ISCO code for last job title)
+          type: UInt32
+          replace: {"X000": "000", "X0000": "0000"}
+
+        F3_D30: &F3_D30_1384
+          new_name: Last_Job_Employment_Status
+          question: >
+            وضع شغلی در آخرین شغل
+            کارفرما
+            کارکن مستقل
+            کارکن فامیلی بدون مزد
+            مزد و حقوق بگیر بخش خصوصی
+            مزد و حقوق بگیر بخش عمومی
+            مزد و حقوق بگیر بخش تعاونی
+            کارآموز با مزد
+            کارآموز بدون مزد
+          translation: >
+            Employment status in last job:
+            Employer
+            Self-employed worker
+            Unpaid family worker
+            Private sector employee 
+            Public sector employee
+            Cooperative sector employee
+            Paid apprentice
+            Unpaid apprentice
+          type: category
+          categories:
+            1384:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Paid_Apprentice
+              8: Unpaid_Apprentice
+            1387:
+              1: Employer
+              2: Self-employed
+              3: Unpaid_Family_Worker  
+              4: Private_Sector_Employee
+              5: Public_Sector_Employee
+              6: Cooperative_Sector_Employee
+              7: Public_Sector_Paid_Apprentice
+              8: Public_Sector_Unpaid_Apprentice
+              9: Private_Sector_Paid_Apprentice
+              10: Private_Sector_Unpaid_Apprentice
+
+        F3_D31: &F3_D31_1384
+          new_name: Reason_For_Leaving_Last_Job
+          question: >
+            علت اصلی ترک شغل شما چه بود؟
+            ۱-  پایین بودن درآمد
+            ۲-  تعطیلی دائمی محل کار
+            ۳-  فصلی بودن کار
+            ۴-  موقتی بودن کار
+            ۵-  جابجایی محل کار
+            ۶-  تحصیل یا آموزش
+            ۷-  اخراج یا تعدیل نیرو
+            ۸-  مسائل خانوادگی
+            ۹-  مهاجرت
+            ۱۰- بازنشستگی
+            ۱۱- به پایان رسیدن دوره‌ی خدمت وظیفه
+            ۱۲- سایر
+          translation: >
+            What was the main reason for leaving your job?
+            1 - Low income
+            2 - Permanent workplace closure
+            3 - Seasonal work
+            4 - Temporary work
+            5 - Workplace relocation
+            6 - Education or training
+            7 - Layoff or downsizing
+            8 - Family issues 
+            9 - Migration
+            10 - Retirement
+            11 - End of military service
+            12 - Other
+          type: category
+          categories:
+            1384:
+              1: Low_Income
+              2: Workplace_Closure
+              3: Seasonal
+              4: Temporary
+              5: Relocation
+              6: Education_or_Training
+              7: Layoff
+              8: Family 
+              9: Migration
+              10: Retirement
+              11: Military_Service_Ended
+              12: Other
+            1387:
+              1: Low_Income
+              2: Workplace_Closure
+              3: Seasonal
+              4: Temporary
+              5: Relocation
+              6: Education_or_Training
+              7: Layoff
+              8: Family 
+              9: Migration
+              10: Retirement
+              11: Military_Service_Ended
+              12: Old_Age
+              13: Illness
+              14: Other
+          replace:
+            1384: {"21": null, "82": null}
+
+        F3_D32: &F3_D32_1384
+          new_name: Took_Action_To_Search_For_Job_Last_4_Weeks
+          question: >
+            آیا در طول چهار هفته‌ی گذشته (شامل هفته‌ی مرجع) اقدامات مشخصی
+            برای جستجوی کار انجام داده‌اید؟
+          translation: >
+            In the past 4 weeks (including the reference week), did you take 
+            specific actions to search for work?
+          type: boolean
+          true_condition: 1
+
+        F3_D1_33: &F3_D1_33_1384
+          new_name: Job_Search_Method_Gov_Agencies
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            ثبت‌نام و یا پیگیری در موسسات کاریابی وزارت کار
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Registering or following up with other employment agencies
+          type: boolean
+          true_condition: 1
+
+        F3_D2_33: &F3_D2_33_1384
+          new_name: Job_Search_Method_Other_Agencies
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            ثبت‌نام و یا پیگیری در سایر موسسات کاریابی
+          translation: >
+            In the past 4 weeks, which method did you use to look for work? 
+            Contacting employers
+          type: boolean
+          true_condition: 1
+
+        F3_D3_33: &F3_D3_33_1384
+          new_name: Job_Search_Method_Employers
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            تماس با کارفرما (صاحب کار)
+          translation: >
+            In the past 4 weeks, which method did you use to look for work? 
+            Contacting employers
+          type: boolean
+          true_condition: 1
+
+        F3_D4_33: &F3_D4_33_1384
+          new_name: Job_Search_Method_Friends
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            پرس و جو از دوستان آشنایان
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Asking friends or acquaintances
+          type: boolean
+          true_condition: 1
+
+        F3_D5_33: &F3_D5_33_1384
+          new_name: Job_Search_Method_Self_Employment
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            جستجوی منابع مالی و امکانات برای شروع فعالیت خود اشتغالی
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Searching for financial resources and possibilities to start self-employment
+          type: boolean
+          true_condition: 1
+
+        F3_D6_33: &F3_D6_33_1384
+          new_name: Job_Search_Method_Permits
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            تقاضای جواز کسب یا پروانه‌ی کار
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Applying for business license or work permit
+          type: boolean
+          true_condition: 1
+
+        F3_D7_33: &F3_D7_33_1384
+          new_name: Job_Search_Method_Advertisements
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            درج آگهی در روزنامه‌ها یا مطالعه‌ی آگهی‌های استخدام
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Placing or answering job advertisements
+          type: boolean
+          true_condition: 1
+
+        F3_D8_33: &F3_D8_33_1384
+          new_name: Job_Search_Method_Other
+          question: >
+            در طول چهار هفته‌ی گذشته از طریق کدام شیوه در جستجوی کار یوده‌اید؟
+            سایر
+          translation: >
+            In the past 4 weeks, which method did you use to look for work?
+            Other
+          type: boolean
+          true_condition: 1
+
+        F3_D34SAL: &F3_D34SAL_1384
+          new_name: Job_Search_Duration_Years
+          question: >
+            چه مدتی است که در جستجوی کار هستید؟
+            سال
+          translation: >
+            How long have you been looking for work?
+            Years
+          type: UInt8
+
+        F3_D34MAH: &F3_D34MAH_1384
+          new_name: Job_Search_Duration_Months
+          question: >
+            چه مدتی است که در جستجوی کار هستید؟
+            ماه
+          translation: >
+            How long have you been looking for work?
+            Months
+          type: UInt8
+
+        F3_D35: &F3_D35_1384
+          new_name: Reason_Not_Job_Searching_Last_4_Weeks
+          question: >
+            علت این که در طول چهار هفته‌ی گذشته در جستجوی کار نبوده‌اید چیست؟
+            ۱-  آغاز به کار در آینده (انتظار برای شروع کار جدید)
+            ۲-  در انتظار پاسخ کارفرما یا در انتظار اعلام نتایج آزمون استخدامی
+            ۳-  در انتظار به ثمر رسیدن سایر اقدامات انجام شده برای پیدا کردن کار
+            ۴-  دلسرد شدن از جستجوی کار، ناامید شدن از پیدا کردن کار
+            ۵-  در انتظار بازگشت به شغل قبلی
+            ۶-  در انتظار فصل کاری
+            ۷-  آگاهی نداشتن از روش‌های جستجوی کار
+            ۸-  بیماری، ناتوانی جسمی موقت، بارداری
+            ۹-  اشتغال به تحصیل یا آموزش
+            ۱۰- مسئولیت‌های شخصی یا خانوادگی
+            ۱۱- بی‌نیاز بودن از انجام کار
+            ۱۲- سایر
+          translation: >
+            What is the reason you were not searching for work in the past 4 weeks?
+            1 - Starting work in future (waiting to start new job)
+            2 - Awaiting employer response or job test results 
+            3 - Awaiting other job search efforts to come to fruition
+            4 - Discouraged from job search, lost hope of finding work
+            5 - Awaiting return to previous job
+            6 - Awaiting work season  
+            7 - Unaware of job search methods
+            8 - Illness, temporary disability, pregnancy
+            9 - In education or training
+            10 - Personal or family responsibilities
+            11 - No need to work
+            12 - Other
+          type: category
+          categories:
+            1384:
+              1: Starting_Future_Job
+              2: Awaiting_Response
+              3: Awaiting_Search_Results
+              4: Discouraged
+              5: Awaiting_Previous_Job
+              6: Awaiting_Season
+              7: Unaware_of_Methods
+              8: Illness   
+              9: Education_or_Training
+              10: Personal_Issues
+              11: No_Need_to_Work
+              12: Other
+            1387:
+              1: Starting_Future_Job
+              2: Awaiting_Previous_Job
+              3: Awaiting_Response
+              4: Awaiting_Search_Results
+              5: Discouraged
+              6: Awaiting_Season
+              7: Unaware_of_Methods
+              8: Illness   
+              9: Education_or_Training
+              10: Personal_Issues
+              11: No_Need_to_Work
+              12: Other
+
+
+        F3_D36:
+          new_name: Wants_To_Have_Job_Or_Occupation
+          question: >
+            آیا تمایل دارید که در شغل یا حرفه‌ای مشغول کار شوید؟
+          translation: >
+            Do you want to have a job or occupation?
+          type: boolean
+          true_condition: 1
+
+        F3_D37SAL:
+          new_name: Time_Wanting_To_Work_Years
+          question: >
+            چه مدتی است که تمایل دارید کار کنید؟
+            سال
+          translation: >
+            How long have you wanted to work?
+            Years
+          type: UInt8
+
+        F3_D37MAH:
+          new_name: Time_Wanting_To_Work_Months
+          question: >
+            چه مدتی است که تمایل دارید کار کنید؟
+            ماه
+          translation: >
+            How long have you wanted to work?
+            Months
+          type: UInt8
+
+        F3_D38: &F3_D38_1384
+          new_name: Situation_Before_Wanting_To_Work
+          question: >
+            قبل از آن چه وضعیتی داشتید؟
+            ۱- مشغول به کار
+            ۲- در حال تحصیل
+            ۳- خانه‌دار
+            ۴- بازنشسته
+            ۵- دارای درآمد بدون کار
+            ۶- سایر
+          translation: >
+            What was your situation before that?
+            1 - Employed
+            2 - Student
+            3 - Homemaker
+            4 - Retired
+            5 - Had income without work
+            6 - Other
+          type: category
+          categories:
+            1: Employed
+            2: Student
+            3: Homemaker
+            4: Retired
+            5: Income_Without_Work
+            6: Other
+
+        F3_D1_38MAH: &F3_D1_38MAH_1384
+          new_name: Total_Work_Duration_Years
+          question: >
+            در مجموع چند سال و چند ماه کار کرده‌اید؟
+            سال
+          translation: >
+            In total, how many years and months have you worked?
+            Years
+          type: UInt8
+
+        F3_D1_38SAL: &F3_D1_38SAL_1384
+          new_name: Total_Work_Duration_Months
+          question: >
+            در مجموع چند سال و چند ماه کار کرده‌اید؟
+            ماه
+          translation: >
+            In total, how many years and months have you worked?
+            Months
+          type: UInt8
+
+        F3_D39: &F3_D39_1384
+          new_name: Currently_Receiving_Unemployment_Insurance
+          question: >
+            آیا در حال حاضر از بیمه‌ی بیکاری استفاده می‌کنید؟
+          translation: >
+            Are you currently receiving unemployment insurance?
+          type: boolean
+          true_condition: 1
+
+        F3_D40: &F3_D40_1384
+          new_name: Ready_To_Start_Job_If_Found_Last_Week
+          question: >
+            آیا اگر طی هفته‌ی گذشته شغل یا حرفه‌ای برای شما پیدا می‌شد، حداکثر
+            تا پایان این هفته، آمادگی شروع به کار در آن شغل یا حرفه را داشتید؟
+          translation: >
+            If a job or occupation was found for you last week, would you have 
+            been ready to start working in it by the end of this week?
+          type: boolean
+          true_condition: 1
+
+        F3_D41: &F3_D41_1384
+          new_name: Reason_Not_Ready_For_Work
+          question: >
+            به چه علت برای شروع به کار آمادگی نداشتید؟
+            ۱- لزوم اتمام دوره‌ی تحصیلی یا گذراندن دوره‌ی آموزشی مربوط
+            ۲- بیماری، ناتوانی جسمانی موقت
+            ۳- نداشتن شرایط سنی مناسب
+            ۴- مسئولیت‌های شخصی و خانوادگی
+            ۵- سایر
+          translation: >
+            Why were you not ready to start working?
+            1 - Need to complete education or related training
+            2 - Illness, temporary disability
+            3 - Not having suitable age
+            4 - Personal and family responsibilities
+            5 - Other
+          type: category
+          categories:
+            1: Complete education
+            2: Illness
+            3: Unsuitable_Age
+            4: Personal_Issues
+            5: Other
+
+        F3_D1_41: &F3_D1_41_1384
+          new_name: Situation_Last_Week
+          question: >
+            شما در هفته‌ی گذشته چه وضعیتی داشته‌اید؟
+            ۱- مشغول به کار
+            ۲- در حال تحصیل
+            ۳- خانه‌دار
+            ۴- بازنشسته
+            ۵- دارای درآمد بدون کار
+            ۶- سایر
+          translation: >
+            What was your situation last week?
+            1 - Employed
+            2 - Student 
+            3 - Homemaker
+            4 - Retired
+            5 - Income without work
+            6 - Other
+          type: category
+          categories:
+            1: Employed
+            2: Student
+            3: Homemaker
+            4: Retired
+            5: Income_Without_Work
+            6: Other
+
+        F3_D42: &F3_D42_1384
+          new_name: Preferred_Employment_Status
+          question: >
+            چه وضعیت شغلی را ترجیح می‌دهید؟
+            ۱- خود اشتغالی
+            ۲- مزد و حقوق‌بگیری
+          translation: >
+            Which employment status do you prefer?
+            1 - Self-employment
+            2 - Paid employment
+          type: category
+          categories:
+            1: Self_employment
+            2: Paid_employment
+
+        F3_D43: &F3_D43_1384
+          new_name: Preferred_Work_Sector
+          question: >
+            ترجیح می‌دهید در کدام یک از بخش‌های زیر کار کنید؟
+            ۱- کشاورزی
+            ۲- صنعت
+            ۳- خدمات
+          translation: >
+            In which of the following sectors do you prefer to work?
+            1 - Agriculture
+            2 - Industry 
+            3 - Services
+          type: category
+          categories:
+            1: Agriculture
+            2: Industry
+            3: Services
+
+
+      1387:
+
+        F3_D01: *F3_D01_1384
+
+        F3_D02:
+          new_name: Worked_from_Home_Last_Week
+          question: >
+            در طول هفته‌ی گذشته در محل سکونت به منظور کسب سود یا درآمد (نقدی
+            یا غیر نقدی) حداقل یک ساعت، کاری انجام داده‌اید؟ کارهایی نظیر
+            قالیبافی، خیاطی، آرایشگری، تایپ، تدریس خصوصی و مانند آن.
+          translation: >
+
+          type: boolean
+          true_condition: 1
+
+        F3_D03: *F3_D03_1384
+
+        F3_D04:
+          new_name: Produced_Goods_For_Own_Use_Last_Week
+          question: >
+            در طول هفته‌ی گذشته حداقل یک ساعت برای تولید کالاهای بادوام به
+            منظور مصرف خود یا خانوار خود کاری انجام داده‌اید؟ مانند
+            قالی‌بافی، گلیم‌بافی، حصیربافی، دوخت لباس و مانند آن.
+          translation: >
+            Last week, did you spend at least 1 hour producing durable goods 
+            for own or household use? Such as rug weaving, mat weaving, basket 
+            weaving, sewing clothes, etc.
+          type: boolean
+          true_condition: 1
+
+        F3_D05:
+          new_name: Unpaid_Apprenticeship_or_Service_Last_Week
+          question: >
+            در طول هفته‌ی گذشته حداقل یک ساعت به فعالیت‌هایی نظیر : کارآموزی
+            بدون مزد یا با مزد یا انجام خدمت وظیفه پرداخته‌اید؟
+          translation: >
+            Last week, did you spend at least 1 hour on unpaid or paid 
+            apprenticeship or performing military/civil service? 
+          type: boolean
+          true_condition: 1
+
+        F3_D06: *F3_D04_1384
+        F3_D07: *F3_D05_1384
+        F3_D08: *F3_D06_1384
+        F3_D09: *F3_D08_1384
+        F3_D10: *F3_D07_1384
+        F3_D11: *F3_D09_1384
+        F3_D12: *F3_D10_1384
+        F3_D13: *F3_D11_1384
+        F3_D14SAL: *F3_D12SAL_1384
+        F3_D14MAH: *F3_D12MAH_1384
+        F3_D15SAL: *F3_D1_12SAL_1384
+        F3_D15MAH: *F3_D1_12MAH_1384
+        F3_D16SHASLIR: *F3_D13SHASLIR_1384
+        F3_D16SHASLIS: *F3_D13SHASLIS_1384
+        F3_D16SHHAMRO: *F3_D13SHHAMEH_1384
+        F3_D16SHHAMSA: *F3_D13SHHAMES_1384
+        F3_D17: *F3_D14_1384
+        F3_D18SHANBEH: *F3_D15SHANBEH_1384
+        F3_D18YEKSHAN: *F3_D15YEKSHAN_1384
+        F3_D18DOSHANB: *F3_D15DOSHANB_1384
+        F3_D18SESHANB: *F3_D15SESHANB_1384
+        F3_D18CHARSHA: *F3_D15CHARSHA_1384
+        F3_D18PANSHAN: *F3_D15PANSHAN_1384
+        F3_D18JOMEH: *F3_D15JOMEH_1384
+        F3_D18JAM: *F3_D15JAM_1384
+        F3_D19: *F3_D1_16_1384
+        F3_D20: *F3_D2_16_1384
+        F3_D21: *F3_D17_1384
+        F3_D22: *F3_D18_1384
+        F3_D23: *F3_D19_1384
+        F3_D24: *F3_D20_1384
+        F3_D25: *F3_D21_1384
+        F3_D26: *F3_D1_21_1384
+        F3_D27ROZ: *F3_D22ROZ_1384
+        F3_D27SAAT: *F3_D22SAAT_1384
+        F3_D28: *F3_D24_1384
+        F3_D29: *F3_D23_1384
+        F3_D30: *F3_D25_1384
+        F3_D31: *F3_D32_1384
+        F3_D1_32: *F3_D1_33_1384
+        F3_D2_32: *F3_D2_33_1384
+        F3_D3_32: *F3_D3_33_1384
+        F3_D4_32: *F3_D4_33_1384
+        F3_D5_32: *F3_D5_33_1384
+        F3_D6_32: *F3_D6_33_1384
+        F3_D7_32: *F3_D7_33_1384
+        F3_D8_32: *F3_D8_33_1384
+
+        F3_D9_32:
+          new_name: Job_Search_Method_None
+          question: >
+            در طول چهار هفته‌ی گذشته، از طریق کدام یک از شیوه‌های زیر در
+            جستجوی کار یا دایر کردن کسب و کار بوده‌اید؟
+            اقدامی انجام نشده است.
+          translation: >
+            In the past 4 weeks, which of the following methods did you use to 
+            look for work or start a business?
+            No action taken
+          type: boolean
+          true_condition: 1 
+
+        F3_D33: *F3_D35_1384
+        F3_D34: *F3_D40_1384
+        F3_D35SAL: *F3_D34SAL_1384
+        F3_D35MAH: *F3_D34MAH_1384
+        F3_D36: *F3_D38_1384
+        F3_D37SAL: *F3_D1_38SAL_1384
+        F3_D37MAH: *F3_D1_38MAH_1384
+        F3_D38: *F3_D39_1384
+        F3_D39: *F3_D26_1384
+        F3_D40SAL: *F3_D27SAL_1384
+        F3_D40MAH: *F3_D27MAH_1384
+        F3_D41: *F3_D29_1384
+        F3_D42: *F3_D28_1384
+        F3_D43: *F3_D30_1384
+        F3_D44: *F3_D31_1384
+        F3_D45: *F3_D40_1384
+        F3_D46: *F3_D41_1384
+        F3_D47: *F3_D1_41_1384
+
+        F3_D48SAAT:
+          new_name: Preferred_Hours_Per_Day
+          question: >
+            با توجه به شرابط خود تمایل دارید چند ساعت در روز و چند روز در هفته
+            کار کنید؟
+            ساعت در روز
+          translation: >
+            Considering your circumstances, how many hours per day and days 
+            per week would you prefer to work?
+            Hours per day
+          type: UInt8
+
+        F3_D48ROZ:
+          new_name: Preferred_Days_Per_Week
+          question: >
+            با توجه به شرابط خود تمایل دارید چند ساعت در روز و چند روز در هفته
+            کار کنید؟
+            روز در هفته
+          translation: >
+            Considering your circumstances, how many hours per day and days
+            per week would you prefer to work? 
+            Days per week
+          type: UInt16
+
+        F3_D49: *F3_D42_1384
+        F3_D50: *F3_D43_1384
+
+
+    IW_YEARLY:
+      new_name: Weight  # HBSIR
+      type: float
+
+    ACTIVITYSTATUS:
+      new_name: Activity_State  # HBSIR
+      type: category
+      categories: 
+        1: Employed
+        2: Unemployed
+        3: Inactive
