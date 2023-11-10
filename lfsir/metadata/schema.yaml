@@ -2,3 +2,7 @@
 some_table:
   table_list:
     - data
+
+data:
+  instructions:
+    - add_year 

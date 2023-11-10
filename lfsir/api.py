@@ -41,13 +41,13 @@ import shutil
 
 import pandas as pd
 
-from .core import archive_handler, data_cleaner, data_engine
+from .core import archive_handler, data_cleaner, data_engine, decoder, metadata_reader
 from . import utils
 from .core.metadata_reader import (
     metadata,
     defaults,
     original_tables,
-    # _Attribute,
+    _Attribute,
     _OriginalTable,
     _StandardTable,
     # _Province,
@@ -187,6 +187,124 @@ def load_table(
             years=years,
             settings=settings,
         )
+    return table
+
+
+def add_classification(
+    table: pd.DataFrame,
+    name: str = "original",
+    classification_type: Literal["commodity", "industry", "occupation"] | None = None,
+    *,
+    aspects: Iterable[str] | None = None,
+    levels: Iterable[int] | int | None = None,
+    column_names: Iterable[str] | str | None = None,
+    drop_value: bool | None = None,
+    missing_value_replacements: dict[str, str] | None = None,
+    code_col: str | None = None,
+    year_col: str | None = None,
+) -> pd.DataFrame:
+    """Add classification columns to table.
+
+    Classifies codes in the table using specified classification system.
+
+    Supported systems:
+
+    - 'commodity': Classifies commodity codes
+    - 'industry': Classifies industry codes
+    - 'occupation': Classifies occupation codes
+
+    Parameters
+    ----------
+    table : DataFrame
+        Table containing code column to classify.
+    name : str, default 'original'
+        Name of classification to apply.
+    classification_type : str, optional
+        Type of classification system.
+    aspects : list, optional
+        Aspects of classification to add as columns.
+    levels : list of int, optional
+        Number of digits for each classification level.
+    column_names: list of str, optional
+        Names of output columns.
+    drop_value : bool, optional
+        Whether to drop unclassified values.
+    missing_value_replacements : dict, optional
+        Replacements for missing values in columns.
+    code_col: str, optional
+        Name of the code column.
+    year_col: str, optional
+        Name of the year column.
+
+    Returns
+    -------
+    DataFrame
+        Table with added classification columns.
+
+    """
+    parameters = _extract_parameters(locals())
+    if "classification_type" not in parameters:
+        if "code_column_name" in parameters:
+            if table[parameters["code_column_name"]].le(10_000).mean() < 0.9:
+                class_type = "occupation"
+            else:
+                class_type = "commodity"
+        elif metadata_reader.defaults.columns.commodity_code in table.columns:
+            class_type = "commodity"
+        elif metadata_reader.defaults.columns.job_code in table.columns:
+            class_type = "occupation"
+        else:
+            raise ValueError("Missing Code Column")
+        parameters["classification_type"] = class_type
+    settings = decoder.DecoderSettings(**parameters)
+    table = decoder.Decoder(table=table, settings=settings).add_classification()
+    return table
+
+
+def add_attribute(
+    table: pd.DataFrame,
+    name: _Attribute,
+    *,
+    aspects: Iterable[str] | str | None = None,
+    column_names: Iterable[str] | str | None = None,
+    id_col: str | None = None,
+    year_col: str | None = None,
+) -> pd.DataFrame:
+    """Add household attributes to table based on ID.
+
+    Takes a DataFrame with a household ID column and adds columns
+    for the specified attribute such as urban/rural status or province.
+
+    Supported attributes:
+
+    - 'Urban_Rural': Urban or rural classification
+    - 'Province': Province name
+    - 'County': County name
+
+    Parameters
+    ----------
+    table : DataFrame
+        DataFrame containing ID column.
+    name : str
+        Name of attribute to add.
+    aspects: list of str, optional
+        Aspects of attribute to add as columns.
+    column_names: list of str, optional
+        Output column names.
+    id_col: str, optional
+        Name of ID column.
+    year_col: str, optional
+        Name of year column.
+
+    Returns
+    -------
+    DataFrame
+        Input DataFrame with added attribute columns.
+
+    """
+    parameters = _extract_parameters(locals())
+    settings = decoder.IDDecoderSettings(**parameters)
+    table = decoder.IDDecoder(table=table, settings=settings).add_attribute()
     return table
 
 
