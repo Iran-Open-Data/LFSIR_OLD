@@ -227,6 +227,7 @@ class TableHandler:
     def _load_table(self, table_name: _OriginalTable) -> pd.DataFrame:
         return pd.read_parquet(self.get_local_path(table_name))
 
+
 class Pipeline:
     """Applies a sequence of transformation steps to a DataFrame.
 
@@ -648,5 +649,5 @@ def create_table(
     for year in utils.parse_years(years):
         table = TableFactory(table_name, year, settings).load()
         table_list.append(table)
-    table = pd.concat(table_list)
+    table = pd.concat(table_list, ignore_index=True)
     return table

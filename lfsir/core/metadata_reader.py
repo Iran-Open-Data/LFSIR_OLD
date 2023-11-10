@@ -17,7 +17,7 @@ _Table = _OriginalTable | _StandardTable
 
 original_tables: tuple[_OriginalTable] = get_args(_OriginalTable)  # type: ignore
 
-_Attribute = Literal["Year", "Season", "Urban_Rural", "Province"]
+_Attribute = Literal["ID_Year", "Season", "Urban_Rural", "Province"]
 
 _Province = Literal[
     "Markazi",
@@ -61,8 +61,8 @@ def open_yaml(
 ):
     """Open and parse a YAML file from package or root directory.
 
-    Handles locating the YAML file based on provided path and 
-    directory location. Runs an optional string interpreter 
+    Handles locating the YAML file based on provided path and
+    directory location. Runs an optional string interpreter
     function before loading the YAML.
 
     Parameters
@@ -98,11 +98,11 @@ def open_yaml(
 def flatten_dict(dictionary: dict) -> dict[tuple[Any, ...], Any]:
     """Flatten a nested dictionary into a flattened dictionary.
 
-    Converts a nested dictionary into a flattened version where the keys 
+    Converts a nested dictionary into a flattened version where the keys
     are tuples that preserve the structure of the original nested keys.
 
     For example:
-    
+
         {
             'a': 1,
             'b': {
@@ -112,7 +112,7 @@ def flatten_dict(dictionary: dict) -> dict[tuple[Any, ...], Any]:
                 }
             }
         }
-    
+
     would flatten to:
 
         {
@@ -146,7 +146,7 @@ def flatten_dict(dictionary: dict) -> dict[tuple[Any, ...], Any]:
 def collect_settings() -> dict[tuple[Any, ...], Any]:
     """Collect and merge settings from package and root directories.
 
-    Loads default settings YAML from package directory. 
+    Loads default settings YAML from package directory.
     Checks for package override YAML in package dir.
     Checks for root override YAML in root dir.
     Merges everything into a single flattened settings dict.
@@ -239,7 +239,7 @@ class Metadata:
         "instruction",
         "tables",
         # "maps",
-        # "household",
+        "household",
         # "commodities",
         # "occupations",
         "industries",
@@ -288,7 +288,6 @@ class Metadata:
         else:
             interpreter = None
         return interpreter
-
 
 
 metadata = Metadata()

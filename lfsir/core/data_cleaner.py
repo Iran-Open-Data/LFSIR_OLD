@@ -52,7 +52,9 @@ def load_raw_data(year: int, table_name: _OriginalTable = "data") -> pd.DataFram
     return table
 
 
-def open_and_clean_table(year: int, table_name: _OriginalTable = "data") -> pd.DataFrame:
+def open_and_clean_table(
+    year: int, table_name: _OriginalTable = "data"
+) -> pd.DataFrame:
     """Cleans table data using metadata transformations.
 
     Loads raw table data, applies cleaning ops based on metadata,

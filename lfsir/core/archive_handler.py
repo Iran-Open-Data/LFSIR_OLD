@@ -82,6 +82,7 @@ def _get_zip_file_name(year: int) -> str:
         file_name = f"{year}.zip"
     return file_name
 
+
 def download(years: _Years = "all", replace: bool = False) -> None:
     """Download archive files for the specified years.
 
@@ -144,6 +145,7 @@ def _download_year_file(year: int, replace: bool = True) -> None:
     local_path = defaults.archive_files.joinpath(_get_zip_file_name(year))
     if (not Path(local_path).exists()) or replace:
         utils.download(url=file_url, path=local_path, show_progress_bar=True)
+
 
 def unpack(years: _Years = "all", replace: bool = False) -> None:
     """Extract archive files for the specified years.
@@ -275,6 +277,7 @@ def extract(years: _Years = "all", replace: bool = False) -> None:
     for year in years:
         _extract_tables_from_access_file(year, replace)
 
+
 def _extract_tables_from_access_file(year: int, replace: bool = True) -> None:
     with _create_cursor(year) as cursor:
         table_list = _get_access_table_list(cursor)
@@ -282,6 +285,7 @@ def _extract_tables_from_access_file(year: int, replace: bool = True) -> None:
             table_list, desc=f"Extracting data from {year}", unit="table"
         ):
             _extract_table(cursor, year, table_name, replace)
+
 
 @contextmanager
 def _create_cursor(year: int) -> Generator[pyodbc.Cursor, None, None]:
