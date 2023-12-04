@@ -1,6 +1,6 @@
 
 yearly_table_availability:
-  household_information:      {data: 1384}
+  data: {start : 1384}
 
 default_table_settings:
   # Options: error, drop
